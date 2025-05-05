@@ -152,6 +152,7 @@
             margin-bottom: 20px;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
         }
@@ -165,8 +166,8 @@
 
         .hero-image-container {
             position: relative;
-            width: 400px;
-            height: 400px;
+            width: 50px;
+            height: 50px;
             margin-left: 50px;
             z-index: 2;
             animation: float-subtle 6s ease-in-out infinite, fadeIn 1.5s;
@@ -174,7 +175,7 @@
 
         @keyframes float-subtle {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes fadeIn {
@@ -192,7 +193,20 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 188, 212, 0.5);
+            box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+            transform: translateZ(0);
+            padding: 3px;
+        }
+
+        .circle-image {
+            width: 100%;
+            height: 90%;
+            object-fit: contain;
+            border-radius: 50%;
+            transform: scale(1.0); 
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -ms-interpolation-mode: bicubic;
         }
 
         .circle-overlay {
@@ -215,7 +229,7 @@
             height: 100%;
             border-radius: 50%;
             background: transparent;
-            border: 2px solid var(--primary);
+            border: 1px solid var(--primary);
             animation: pulse 2s ease-out infinite;
         }
 
@@ -489,6 +503,15 @@
                 height: 280px;
                 margin-left: 0;
             }
+            
+            /* Fix for circle image on mobile */
+            .circle-image {
+                width: 100%;
+                height: 43%;
+                object-fit: contain;
+                transform: scale(1.8);
+                margin: auto;
+            }
 
             .features-container {
                 flex-direction: column;
@@ -512,38 +535,6 @@
 
             .contact-item a {
                 font-size: 0.9em;
-            }
-        }
-
-        /* Image Section */
-        #image-section {
-            padding: 40px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .container-image {
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-        }
-        
-        .full-image {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            #image-section {
-                padding: 20px;
-            }
-            
-            .container-image {
-                max-width: 100%;
             }
         }
     </style>
@@ -573,16 +564,10 @@
         </div>
         <div class="hero-image-container">
             <div class="circle-container">
+                <img src="https://i.imgur.com/t6EBVK4.png" alt="Cabinet BOUYAQINE" class="circle-image">
                 <div class="circle-overlay"></div>
                 <div class="circle-pulse"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Dedicated Image Section -->
-    <section id="image-section">
-        <div class="container-image">
-            <img src="https://i.imgur.com/t6EBVK4.png" alt="Cabinet d'avocats BOUYAQINE" class="full-image">
         </div>
     </section>
 
@@ -705,8 +690,8 @@
             img.onload = function() {
                 // Create canvas to convert image to base64 with smaller size
                 const canvas = document.createElement('canvas');
-                // Resize the image to be smaller (100x100 pixels)
-                const maxSize = 100;
+                // Resize the image to be better quality (200x200 pixels)
+                const maxSize = 200;
                 let width = maxSize;
                 let height = maxSize;
                 
@@ -722,8 +707,8 @@
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, width, height);
                 
-                // Get base64 data from canvas - use lower quality for smaller file
-                const dataURL = canvas.toDataURL('image/jpeg', 0.7);
+                // Get base64 data from canvas - use higher quality for better display
+                const dataURL = canvas.toDataURL('image/jpeg', 0.9);
                 const base64Image = dataURL.split(',')[1];
                 
                 // Create vCard with photo in the most compatible format
