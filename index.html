@@ -691,8 +691,8 @@
             img.onload = function() {
                 // Create canvas to convert image to base64 with smaller size
                 const canvas = document.createElement('canvas');
-                // Resize the image to be better quality but smaller size
-                const maxSize = 100; // Reduced from 200 to 100
+                // Resize the image to be better quality (200x200 pixels)
+                const maxSize = 200;
                 let width = maxSize;
                 let height = maxSize;
                 
