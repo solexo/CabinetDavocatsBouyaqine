@@ -731,12 +731,12 @@ N:Bouyaqine;Anis;;;
 FN:${contactName}
 ORG:Cabinet d'avocats BOUYAQINE
 TITLE:Avocat
-TEL;TYPE=${phoneNumber}
-ADR;TYPE=${address};;;
-EMAIL;TYPE=${email}
+TEL:${phoneNumber}
+ADR:${address};;;
+EMAIL:${email}
 URL:${website}
 PHOTO;ENCODING=b;TYPE=JPEG:${base64Image}
-END:VCARD`;
+END:VCARD`; can you delete work and show phone address and email 
                 
                 const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
                 const url = URL.createObjectURL(blob);
