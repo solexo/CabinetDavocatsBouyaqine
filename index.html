@@ -731,12 +731,12 @@ N:Bouyaqine;Anis;;;
 FN:${contactName}
 ORG:Cabinet d'avocats BOUYAQINE
 TITLE:Avocat
-TEL;TYPE=WORK,VOICE:${phoneNumber}
-ADR;TYPE=WORK:;;${address};;;
-EMAIL;TYPE=WORK:${email}
+TEL:${phoneNumber}
+ADR:;;${address};;;
+EMAIL:${email}
 URL:${website}
 PHOTO;ENCODING=b;TYPE=JPEG:${base64Image}
-END:VCARD`;
+END:VCARD
                 
                 const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
                 const url = URL.createObjectURL(blob);
